@@ -9,6 +9,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author Prulloac
+ */
 public class PageRequestBuilder {
 
 	private PageRequestBuilder() throws IllegalAccessException {

@@ -20,6 +20,10 @@ import static com.prulloac.territoriesdata.utils.EntityScanUtil.getAllFields;
 
 public class SpecificationBuilder {
 
+	private SpecificationBuilder() throws IllegalAccessException {
+		throw new IllegalAccessException("Utility class should not be instantiated");
+	}
+
 	@Builder
 	public static class SearchCriteria {
 		private String key;

@@ -5,7 +5,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @author Prulloac
+ */
 public class EntityScanUtil {
+
+	private EntityScanUtil() throws IllegalAccessException {
+		throw new IllegalAccessException("Utility class should not be instantiated");
+	}
 
 	public static List<Field> getAllFields(Class<?> type) {
 		return getAllFields(new ArrayList<>(), type);

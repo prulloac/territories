@@ -16,6 +16,10 @@ import static com.prulloac.territoriesdata.utils.EntityScanUtil.getAllFields;
 @Slf4j
 public class SorteableColumnIdentifier {
 
+	private SorteableColumnIdentifier() throws IllegalAccessException {
+		throw new IllegalAccessException("Utility class should not be instantiated");
+	}
+
 	public static List<String> getSorteableColumns(Class<?> entity) {
 		if (entity.isAnnotationPresent(Entity.class)) {
 			return getAllFields(entity)
