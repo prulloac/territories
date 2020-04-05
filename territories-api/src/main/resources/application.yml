@@ -1,0 +1,33 @@
+
+spring:
+  session:
+    jdbc:
+      initialize-schema: always
+      save-mode: on_set_attribute
+      flush-mode: immediate
+      cleanup-cron:
+  datasource:
+    hikari:
+      maximum-pool-size: 10
+      idle-timeout: 1000
+    url: "jdbc:h2:mem:testd"
+    driver-class-name: org.h2.Driver
+    username: "sa"
+    password: "password"
+  jpa:
+    properties:
+      javax:
+        persistence:
+          schema-generation:
+            create-source: metadata
+            scripts:
+              action: create
+              create-target: create.sql
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+  cache:
+    type: redis
+  redis:
+    host: "localhost"
+    port: 6370
