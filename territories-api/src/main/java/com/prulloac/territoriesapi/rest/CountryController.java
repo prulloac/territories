@@ -70,8 +70,8 @@ public class CountryController {
 	@GetMapping
 	@LogExecutionTime
 	public ResponseEntity<Page<Country>> findAllCountriesPaginated(
-			@RequestParam(name = "size", defaultValue = "10") Integer size,
-			@RequestParam(name = "page", defaultValue = "0") Integer page,
+			@RequestParam(name = "size", required = false) Integer size,
+			@RequestParam(name = "page", required = false) Integer page,
 			@RequestParam(name = "sort", required = false) String[] sortCombos,
 			@RequestParam(name = "filters", required = false) String[] filters,
 			@RequestParam(name = "lang", defaultValue = "en") String lang

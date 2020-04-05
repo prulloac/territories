@@ -95,6 +95,7 @@ public class CountryService {
 				;
 	}
 
+	@Transactional(readOnly = true)
 	public Page<Country> findAllCountriesPaginated(Integer page, Integer size, String[] sortCombos, String[] filters, String lang) {
 		Specification specification = SpecificationBuilder.build(filters, Country.class);
 		PageRequest pageRequest = PageRequestBuilder.buildRequest(page, size, sortCombos, Country.class);
