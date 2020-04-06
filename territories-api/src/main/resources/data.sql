@@ -247,3 +247,11 @@ insert into country (iso_code2, iso_code3, iso_numeric, internet_cctld) values (
 insert into country (iso_code2, iso_code3, iso_numeric, internet_cctld) values ('YE','YEM','887','.ye');
 insert into country (iso_code2, iso_code3, iso_numeric, internet_cctld) values ('ZM','ZMB','894','.zm');
 insert into country (iso_code2, iso_code3, iso_numeric, internet_cctld) values ('ZW','ZWE','716','.zw');
+
+insert into continent (iso_code2) values('EU');
+insert into continent (iso_code2) values('AS');
+insert into continent (iso_code2) values('AF');
+insert into continent (iso_code2) values('NA');
+insert into continent (iso_code2) values('OC');
+insert into continent (iso_code2) values('SA');
+insert into continent (iso_code2) values('AN');

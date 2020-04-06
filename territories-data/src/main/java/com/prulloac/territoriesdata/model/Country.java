@@ -9,6 +9,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -41,8 +42,8 @@ public class Country extends GeographicLocation  {
 	@Column(length = 5, name = "internetCctld")
 	private String internetCctld;
 
-	@ManyToOne
-	@JoinColumn
-	private Continent continent;
+	@ManyToMany
+	@JoinTable
+	private List<Continent> continents = new ArrayList<>();
 
 }

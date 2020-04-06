@@ -7,11 +7,12 @@ import com.prulloac.territoriesdata.model.Country;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * @author Prulloac
  */
-public interface CountryDAO extends JpaRepository<Country, String>, JpaSpecificationExecutor<Country> {
+public interface CountryDAO extends JpaRepository<Country, UUID>, JpaSpecificationExecutor<Country> {
 
 	Optional<Country> findByIsoCode2(String iso2);
 
@@ -19,5 +20,5 @@ public interface CountryDAO extends JpaRepository<Country, String>, JpaSpecifica
 
 	Optional<Country> findByIsoNumeric(String isoNumeric);
 
-	List<Country> findAllByContinent_isoCode2(String continent_isoCode2);
+	List<Country> findAllByContinents_isoCode2(String continent_isoCode2);
 }

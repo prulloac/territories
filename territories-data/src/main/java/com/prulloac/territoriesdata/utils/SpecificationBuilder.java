@@ -16,8 +16,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lombok.Builder;
 
-import static com.prulloac.territoriesdata.utils.EntityScanUtil.getAllFields;
-
+/**
+ * @author Prulloac
+ */
 public class SpecificationBuilder {
 
 	private SpecificationBuilder() throws IllegalAccessException {
@@ -121,7 +122,7 @@ public class SpecificationBuilder {
 		if (null == filters || filters.length == 0) {
 			return null;
 		}
-		List<String> fields = getAllFields(entity)
+		List<String> fields = EntityScanUtil.getAllFields(entity)
 				.stream()
 				.filter(field ->
 						field.isAnnotationPresent(Column.class) ||

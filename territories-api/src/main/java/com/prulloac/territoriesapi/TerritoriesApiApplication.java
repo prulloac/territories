@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication(scanBasePackages =
 		{
+				"com.prulloac.territoriesbase",
 				"com.prulloac.territoriesapi",
 				"com.prulloac.territoriesdto",
 				"com.prulloac.territoriesdata"

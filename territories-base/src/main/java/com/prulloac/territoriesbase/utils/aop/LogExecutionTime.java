@@ -1,4 +1,4 @@
-package com.prulloac.territoriesapi.utils.aop;
+package com.prulloac.territoriesbase.utils.aop;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

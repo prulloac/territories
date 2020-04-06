@@ -43,17 +43,25 @@ public class PageRequestBuilder {
 				.collect(Collectors.toList());
 	}
 
-	public static PageRequest buildRequest(Integer offset, Integer limit, String[] sortCombos, Class<?> entity) {
-		int size = null == limit || limit < 1 ? Integer.MAX_VALUE : limit;
-		int page = null == offset || offset < 0 ? Integer.MAX_VALUE : offset;
+	public static Sort buildSort(String[] sortCombos, Class<?> entity) {
 		if (null != sortCombos && sortCombos.length != 0) {
 			List<Sort.Order> sort = filterSortFields(sortCombos, SorteableColumnIdentifier.getSorteableColumns(entity))
 					.stream()
 					.map(PageRequestBuilder::propertyToOrder)
 					.collect(Collectors.toList());
 			if (!sort.isEmpty()) {
-				return PageRequest.of(page, size, Sort.by(sort));
+				return Sort.by(sort);
 			}
+		}
+		return Sort.unsorted();
+	}
+
+	public static PageRequest buildRequest(Integer offset, Integer limit, String[] sortCombos, Class<?> entity) {
+		int size = null == limit || limit < 1 ? Integer.MAX_VALUE : limit;
+		int page = null == offset || offset < 0 ? 0 : offset;
+		Sort sort = buildSort(sortCombos, entity);
+		if (sort != Sort.unsorted()) {
+			return PageRequest.of(page, size, sort);
 		}
 		return PageRequest.of(page, size);
 	}

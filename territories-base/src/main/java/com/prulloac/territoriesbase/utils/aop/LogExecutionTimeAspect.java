@@ -1,4 +1,4 @@
-package com.prulloac.territoriesapi.utils.aop;
+package com.prulloac.territoriesbase.utils.aop;
 
 import org.springframework.stereotype.Component;
 
@@ -9,6 +9,9 @@ import org.aspectj.lang.annotation.Aspect;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * @author Prulloac
+ */
 @Component
 @Aspect
 @Slf4j

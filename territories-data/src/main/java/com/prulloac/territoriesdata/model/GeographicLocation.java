@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
+import java.util.UUID;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -17,12 +18,12 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @MappedSuperclass
-public abstract class GeographicLocation extends GeoCoordinate implements Persistable<String> {
+public abstract class GeographicLocation extends GeoCoordinate implements Persistable<UUID> {
 
 	@Id
 	@Column(columnDefinition = "uuid default uuid_generate_v1()", name = "id")
 	@SorteableColumn
-	protected String id;
+	protected UUID id;
 
 	@Column(unique = true, nullable = false, length = 2)
 	@SorteableColumn
@@ -32,9 +33,9 @@ public abstract class GeographicLocation extends GeoCoordinate implements Persis
 	@SorteableColumn
 	private String isoCode3;
 
-	@Column(unique = true, length = 5)
+	@Column(unique = true)
 	@SorteableColumn
-	private String isoNumeric;
+	private Integer isoNumeric;
 
 	@Override
 	@Transient

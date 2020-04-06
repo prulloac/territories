@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 
-import static com.prulloac.territoriesdata.utils.EntityScanUtil.getAllFields;
-
 /**
  * @author Prulloac
  */
@@ -22,7 +20,7 @@ public class SorteableColumnIdentifier {
 
 	public static List<String> getSorteableColumns(Class<?> entity) {
 		if (entity.isAnnotationPresent(Entity.class)) {
-			return getAllFields(entity)
+			return EntityScanUtil.getAllFields(entity)
 					.stream()
 					.filter(x ->
 							x.isAnnotationPresent(SorteableColumn.class) &&

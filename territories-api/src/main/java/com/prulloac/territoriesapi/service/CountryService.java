@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.prulloac.territoriesbase.error.CountryNotFoundException;
@@ -33,14 +34,15 @@ public class CountryService {
 		this.countryMapper = countryMapper;
 	}
 
-	private Function<Country, CountryDTO> toCountryDTO(String lang) {
+	@Transactional(propagation = Propagation.MANDATORY)
+	public Function<Country, CountryDTO> toCountryDTO(String lang) {
 		Locale locale = new Locale(lang);
 		return country -> countryMapper.toCountryDTO(country, locale);
 	}
 
 	@Transactional(readOnly = true, timeout = 30)
 	public List<CountryDTO> findCountriesByContinentIsoCode2(String iso2, String lang) {
-		List<CountryDTO> countries = countryDAO.findAllByContinent_isoCode2(iso2)
+		List<CountryDTO> countries = countryDAO.findAllByContinents_isoCode2(iso2)
 				.parallelStream()
 				.map(toCountryDTO(lang))
 				.collect(Collectors.toList());
@@ -96,10 +98,11 @@ public class CountryService {
 	}
 
 	@Transactional(readOnly = true)
-	public Page<Country> findAllCountriesPaginated(Integer page, Integer size, String[] sortCombos, String[] filters, String lang) {
-		Specification specification = SpecificationBuilder.build(filters, Country.class);
+	public Page<CountryDTO> findAllCountriesPaginated(Integer page, Integer size, String[] sortCombos, String[] filters, String lang) {
+		Specification<Country> specification = SpecificationBuilder.build(filters, Country.class);
 		PageRequest pageRequest = PageRequestBuilder.buildRequest(page, size, sortCombos, Country.class);
-		return countryDAO.findAll(specification, pageRequest);
+		return countryDAO.findAll(specification, pageRequest)
+				.map(toCountryDTO(lang));
 	}
 
 }

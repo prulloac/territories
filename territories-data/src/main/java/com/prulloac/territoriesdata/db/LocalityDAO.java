@@ -4,5 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.prulloac.territoriesdata.model.Locality;
 
-public interface LocalityDAO extends JpaRepository<Locality, String> {
+import java.util.UUID;
+
+public interface LocalityDAO extends JpaRepository<Locality, UUID> {
 }
