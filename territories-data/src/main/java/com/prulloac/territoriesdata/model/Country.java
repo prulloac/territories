@@ -1,12 +1,13 @@
 package com.prulloac.territoriesdata.model;
 
+import com.prulloac.territoriesdata.utils.FilterableColumn;
+import com.prulloac.territoriesdata.utils.SorteableColumn;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "country")
-public class Country extends GeographicLocation  {
+public class Country extends AbstractGeographicLocation {
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable
@@ -40,6 +41,8 @@ public class Country extends GeographicLocation  {
 	private Short phonePrefix;
 
 	@Column(length = 5, name = "internetCctld")
+	@SorteableColumn
+	@FilterableColumn
 	private String internetCctld;
 
 	@ManyToMany

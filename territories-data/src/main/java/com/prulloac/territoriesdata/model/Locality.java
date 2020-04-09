@@ -1,5 +1,8 @@
 package com.prulloac.territoriesdata.model;
 
+import com.prulloac.territoriesdata.utils.FilterableColumn;
+import com.prulloac.territoriesdata.utils.SorteableColumn;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,7 +27,7 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table
-public class Locality extends GeographicLocation {
+public class Locality extends AbstractGeographicLocation {
 
 	@OneToMany(mappedBy = "parentLocality", fetch = FetchType.LAZY)
 	private List<Locality> localityList;
@@ -38,12 +41,17 @@ public class Locality extends GeographicLocation {
 	private Country country;
 
 	@Column
+	@SorteableColumn
+	@FilterableColumn
 	protected String name;
 
 	@Column
+	@SorteableColumn
 	private String localCode;
 
 	@Column
+	@SorteableColumn
+	@FilterableColumn
 	private Short divisionLevel;
 
 }

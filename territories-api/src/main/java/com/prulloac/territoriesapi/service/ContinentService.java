@@ -51,8 +51,8 @@ public class ContinentService {
 	}
 
 	@Transactional(readOnly = true)
-	public List<ContinentDTO> findAllContintentsFiltered(String[] sortCombos, String[] filters, String lang) {
-		Specification<Continent> specification = SpecificationBuilder.build(filters, Continent.class);
+	public List<ContinentDTO> findAllContinentsFiltered(String[] sortCombos, String[] filters, String lang) {
+		Specification<Continent> specification = new SpecificationBuilder<>(Continent.class).build(filters);
 		Sort sort = PageRequestBuilder.buildSort(sortCombos, Continent.class);
 		return continentDAO.findAll(specification, sort)
 				.stream()

@@ -25,7 +25,8 @@ public class PageRequestBuilder {
 
 	private static Sort.Order propertyToOrder(String property) {
 		String[] split = property.split(":");
-		if ("ASC".equalsIgnoreCase(split[1])) {
+		final String asc = "ASC";
+		if (asc.equalsIgnoreCase(split[1])) {
 			return Sort.Order.asc(split[0]);
 		} else {
 			return Sort.Order.desc(split[0]);
@@ -45,7 +46,7 @@ public class PageRequestBuilder {
 
 	public static Sort buildSort(String[] sortCombos, Class<?> entity) {
 		if (null != sortCombos && sortCombos.length != 0) {
-			List<Sort.Order> sort = filterSortFields(sortCombos, SorteableColumnIdentifier.getSorteableColumns(entity))
+			List<Sort.Order> sort = filterSortFields(sortCombos, SpecialColumnIdentifier.getSorteableColumns(entity))
 					.stream()
 					.map(PageRequestBuilder::propertyToOrder)
 					.collect(Collectors.toList());

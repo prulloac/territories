@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import com.prulloac.territoriesdata.model.Continent;
-import com.prulloac.territoriesdata.model.GeographicLocation;
+import com.prulloac.territoriesdata.model.AbstractGeographicLocation;
 import com.prulloac.territoriesdto.dto.ContinentDTO;
 
 import java.util.Locale;
@@ -30,7 +30,7 @@ public class ContinentMapper extends AbstractMapper {
 		continentDTO.setCountries(continent.getCountries().size());
 		continentDTO.setCountriesIsoCodes(continent.getCountries()
 				.stream()
-				.map(GeographicLocation::getIsoCode2)
+				.map(AbstractGeographicLocation::getIsoCode2)
 				.collect(Collectors.toList()));
 		return continentDTO;
 	}

@@ -1,5 +1,8 @@
 package com.prulloac.territoriesdata.model;
 
+import com.prulloac.territoriesdata.utils.FilterableColumn;
+import com.prulloac.territoriesdata.utils.SorteableColumn;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,9 +27,12 @@ public class PoliticalDivision {
 	private Long id;
 
 	@Column
+	@FilterableColumn
 	private String name;
 
 	@Column
+	@SorteableColumn
+	@FilterableColumn
 	private Short divisionLevel;
 
 	@ManyToMany(mappedBy = "politicalDivisionList")

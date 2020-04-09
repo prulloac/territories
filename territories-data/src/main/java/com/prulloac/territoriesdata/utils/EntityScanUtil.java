@@ -17,11 +17,7 @@ public class EntityScanUtil {
 	}
 
 	public static List<Field> getAllFields(Class<?> type) {
-		long start = System.currentTimeMillis();
-		List<Field> proceed = getAllFields(new ArrayList<>(), type);
-		long end = System.currentTimeMillis();
-		log.info("Execution time of com.prulloac.territoriesdata.utils.getAllFields: {}ms", end - start);
-		return proceed;
+		return getAllFields(new ArrayList<>(), type);
 	}
 
 	private static List<Field> getAllFields(List<Field> fieldList, Class<?> type) {

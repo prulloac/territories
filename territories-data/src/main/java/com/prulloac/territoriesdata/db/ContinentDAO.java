@@ -12,6 +12,11 @@ import java.util.Optional;
  */
 public interface ContinentDAO extends JpaRepository<Continent, Long>, JpaSpecificationExecutor<Continent> {
 
+	/**
+	 * Searches for a specific {@link Continent} with the given iso code
+	 * @param iso represents the iso code used as a filter of our where clause.
+	 * @return Optional<Continent>
+	 */
 	Optional<Continent> findByIsoCode2(String iso);
 
 }

@@ -59,7 +59,7 @@ public class ContinentController {
 			@RequestParam(name = "lang", defaultValue = "en") String lang
 	) {
 		try {
-			return ok(continentService.findAllContintentsFiltered(sortCombos, filters, lang));
+			return ok(continentService.findAllContinentsFiltered(sortCombos, filters, lang));
 		} catch (ContinentNotFoundException e) {
 			log.error(e.getMessage(), e);
 			return notFound().build();

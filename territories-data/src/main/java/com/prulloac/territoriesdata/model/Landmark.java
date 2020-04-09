@@ -1,5 +1,8 @@
 package com.prulloac.territoriesdata.model;
 
+import com.prulloac.territoriesdata.utils.FilterableColumn;
+import com.prulloac.territoriesdata.utils.SorteableColumn;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,12 +15,15 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
+/**
+ * @author Prulloac
+ */
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 @Data
 @Entity
 @Table
-public class Landmark extends GeoCoordinate {
+public class Landmark extends AbstractGeoCoordinate {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,9 +35,12 @@ public class Landmark extends GeoCoordinate {
 	private Locality locality;
 
 	@Column
+	@SorteableColumn
+	@FilterableColumn
 	private String name;
 
 	@Column
+	@FilterableColumn
 	private String streetAddress;
 
 }

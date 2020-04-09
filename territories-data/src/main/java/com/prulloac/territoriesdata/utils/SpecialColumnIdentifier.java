@@ -12,9 +12,9 @@ import lombok.extern.slf4j.Slf4j;
  * @author Prulloac
  */
 @Slf4j
-public class SorteableColumnIdentifier {
+public class SpecialColumnIdentifier {
 
-	private SorteableColumnIdentifier() throws IllegalAccessException {
+	private SpecialColumnIdentifier() throws IllegalAccessException {
 		throw new IllegalAccessException("Utility class should not be instantiated");
 	}
 
@@ -25,6 +25,19 @@ public class SorteableColumnIdentifier {
 					.filter(x ->
 							x.isAnnotationPresent(SorteableColumn.class) &&
 							x.isAnnotationPresent(Column.class))
+					.map(Field::getName)
+					.collect(Collectors.toList());
+		}
+		return Collections.emptyList();
+	}
+
+	public static List<String> getFilterableColumns(Class<?> entity) {
+		if (entity.isAnnotationPresent(Entity.class)) {
+			return EntityScanUtil.getAllFields(entity)
+					.stream()
+					.filter(x ->
+							x.isAnnotationPresent(FilterableColumn.class) &&
+									x.isAnnotationPresent(Column.class))
 					.map(Field::getName)
 					.collect(Collectors.toList());
 		}

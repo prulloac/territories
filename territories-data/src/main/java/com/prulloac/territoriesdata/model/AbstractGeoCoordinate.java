@@ -11,7 +11,7 @@ import javax.persistence.MappedSuperclass;
  * @author Prulloac
  */
 @MappedSuperclass
-public abstract class GeoCoordinate {
+public abstract class AbstractGeoCoordinate {
 
 	@Column
 	@Range(min = -90L, max = 90L)

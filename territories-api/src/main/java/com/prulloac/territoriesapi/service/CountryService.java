@@ -42,7 +42,7 @@ public class CountryService {
 
 	@Transactional(readOnly = true, timeout = 30)
 	public List<CountryDTO> findCountriesByContinentIsoCode2(String iso2, String lang) {
-		List<CountryDTO> countries = countryDAO.findAllByContinents_isoCode2(iso2)
+		List<CountryDTO> countries = countryDAO.findAllByContinentsIsoCode2(iso2)
 				.parallelStream()
 				.map(toCountryDTO(lang))
 				.collect(Collectors.toList());
@@ -91,7 +91,7 @@ public class CountryService {
 
 	@Transactional(readOnly = true, timeout = 5)
 	public CountryDTO findCountryByIsoNumeric(String isoNumeric, String lang) {
-		return countryDAO.findByIsoNumeric(isoNumeric)
+		return countryDAO.findByIsoNumeric(Integer.parseInt(isoNumeric))
 				.map(toCountryDTO(lang))
 				.orElseThrow(() -> CountryNotFoundException.isoCodeNotFound(isoNumeric))
 				;
@@ -99,7 +99,7 @@ public class CountryService {
 
 	@Transactional(readOnly = true)
 	public Page<CountryDTO> findAllCountriesPaginated(Integer page, Integer size, String[] sortCombos, String[] filters, String lang) {
-		Specification<Country> specification = SpecificationBuilder.build(filters, Country.class);
+		Specification<Country> specification = new SpecificationBuilder<>(Country.class).build(filters);
 		PageRequest pageRequest = PageRequestBuilder.buildRequest(page, size, sortCombos, Country.class);
 		return countryDAO.findAll(specification, pageRequest)
 				.map(toCountryDTO(lang));
